@@ -1,0 +1,27 @@
+name: test
+
+
+on:
+  pull_request:
+    branches:
+      - develop
+      - staging
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout
+
+      - name: Use Node.js 22.x
+        uses: actions/setup-node@v1
+        with: 
+          node-version: 22.x
+
+      - name: Install deps
+        run: npm install
+
+      - name: Run Lint
+        run: npm run lint
